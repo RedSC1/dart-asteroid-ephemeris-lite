@@ -1,0 +1,14 @@
+.dart_tool/
+.packages
+.github/
+build/
+coverage/
+doc/api/
+pubspec.lock
+pubspec_overrides.yaml
+test/
+tool/
+.DS_Store
+.idea/
+.vscode/
+*.log
