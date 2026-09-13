@@ -1,0 +1,23 @@
+name: Dart package tests
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get
+      - run: dart format --output=none --set-exit-if-changed lib test example tool
+      - run: dart analyze
+      - run: dart test
+      - run: dart compile js example/main.dart -o /tmp/asteroid-demo.js
+      - run: node /tmp/asteroid-demo.js
+      - run: dart pub publish --dry-run
